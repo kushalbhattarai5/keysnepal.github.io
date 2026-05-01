@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KeysNepal - Coming Soon</title>
+  <title>KeyNepal - Coming Soon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <style>
     body {
       margin: 0;
@@ -24,14 +24,20 @@
       padding: 20px;
     }
 
+    .logo {
+      width: 140px;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
     h1 {
-      font-size: 50px;
+      font-size: 48px;
       margin-bottom: 10px;
       color: #38bdf8;
     }
 
     h2 {
-      font-size: 26px;
+      font-size: 24px;
       margin-bottom: 20px;
     }
 
@@ -44,12 +50,13 @@
     .social a {
       text-decoration: none;
       margin: 0 10px;
-      font-size: 18px;
+      font-size: 16px;
       color: white;
       border: 1px solid #38bdf8;
       padding: 10px 20px;
       border-radius: 30px;
       transition: 0.3s;
+      display: inline-block;
     }
 
     .social a:hover {
@@ -62,27 +69,40 @@
       font-size: 14px;
       color: #94a3b8;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
+
+    <!-- LOGO -->
+    <img src="KeysNepallogo.png" alt="KeyNepal Logo" class="logo">
+
+    <!-- BRAND -->
     <h1>KeyNepal</h1>
     <h2>🚧 Website Under Maintenance</h2>
-    
+
     <p>
       We're building something amazing for you.<br>
       Stay connected with us on social media!
     </p>
 
+    <!-- SOCIAL LINKS -->
     <div class="social">
       <a href="https://www.facebook.com/keysnepal.np" target="_blank">Facebook</a>
       <a href="https://www.instagram.com/keysnepal.np" target="_blank">Instagram</a>
     </div>
 
+    <!-- FOOTER -->
     <footer>
       © 2026 KeyNepal. All rights reserved.
     </footer>
+
   </div>
 </body>
 </html>
