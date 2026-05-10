@@ -1,1 +1,589 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NP Domain Cover Letter Generator</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#eef2f7;
+    padding:30px;
+}
+
+.container{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+/* LEFT PANEL */
+
+.form-box{
+    width:370px;
+    background:#ffffff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.form-box h2{
+    color:#183153;
+    margin-bottom:25px;
+    font-size:28px;
+}
+
+.tab-box{
+    display:flex;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.tab-btn{
+    flex:1;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#e6ebf2;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.tab-btn.active{
+    background:#2563eb;
+    color:#fff;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#334155;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select{
+    width:100%;
+    padding:14px;
+    border:1px solid #d6dce5;
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+    transition:0.3s;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus{
+    border-color:#2563eb;
+}
+
+.input-group textarea{
+    height:90px;
+    resize:none;
+}
+
+.download-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    background:#0f172a;
+    color:#fff;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:10px;
+    transition:0.3s;
+}
+
+.download-btn:hover{
+    background:#2563eb;
+}
+
+/* RIGHT PREVIEW */
+
+.preview-box{
+    flex:1;
+    min-width:450px;
+    background:#fff;
+    padding:60px;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    color:#1e293b;
+    line-height:1.9;
+}
+
+.date{
+    text-align:right;
+    margin-bottom:45px;
+}
+
+.subject{
+    margin:28px 0;
+    font-weight:bold;
+    font-size:20px;
+}
+
+.highlight{
+    color:#2563eb;
+    font-weight:bold;
+}
+
+.signature{
+    margin-top:70px;
+}
+
+.hidden{
+    display:none;
+}
+
+@media(max-width:950px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .form-box{
+        width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+
+    <div class="form-box">
+
+        <h2>NP Domain Generator</h2>
+
+        <div class="tab-box">
+            <button class="tab-btn active" id="personalBtn">
+                Personal
+            </button>
+
+            <button class="tab-btn" id="orgBtn">
+                Organization
+            </button>
+        </div>
+
+        <!-- COMMON -->
+
+        <div class="input-group">
+            <label>Domain Name</label>
+            <input type="text" id="domain" placeholder="example.com.np">
+        </div>
+
+        <!-- PERSONAL FORM -->
+
+        <div id="personalFields">
+
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" id="fullname" placeholder="Your full name">
+            </div>
+
+            <div class="input-group">
+                <label>Address</label>
+                <textarea id="address" placeholder="Your address"></textarea>
+            </div>
+
+        </div>
+
+        <!-- ORGANIZATION FORM -->
+
+        <div id="orgFields" class="hidden">
+
+            <div class="input-group">
+                <label>Company Name</label>
+                <input type="text" id="company" placeholder="Registered company name">
+            </div>
+
+            <div class="input-group">
+                <label>Contact Person</label>
+                <input type="text" id="contact" placeholder="Contact person name">
+            </div>
+
+            <div class="input-group">
+                <label>Company Address</label>
+                <textarea id="companyAddress" placeholder="Company address"></textarea>
+            </div>
+
+        </div>
+
+        <!-- NS -->
+
+        <div class="input-group">
+            <label>Primary Name Server</label>
+            <input type="text" id="ns1" value="ns1.examplehost.com">
+        </div>
+
+        <div class="input-group">
+            <label>Secondary Name Server</label>
+            <input type="text" id="ns2" value="ns2.examplehost.com">
+        </div>
+
+        <!-- DOWNLOAD -->
+
+        <div class="input-group">
+            <label>Download Format</label>
+
+            <select id="format">
+                <option value="pdf">PDF</option>
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+            </select>
+        </div>
+
+        <button class="download-btn" onclick="downloadLetter()">
+            Download Cover Letter
+        </button>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+
+    <div class="preview-box" id="letter">
+
+        <div class="date">
+            Date: <span id="currentDate"></span>
+        </div>
+
+        <p>
+            To,<br>
+            Domain Registration Department<br>
+            Mercantile Communications Pvt. Ltd.<br>
+            Kathmandu, Nepal
+        </p>
+
+        <div class="subject">
+            Subject: Request for .com.np Domain Registration
+        </div>
+
+        <p>Dear Sir/Madam,</p>
+
+        <br>
+
+        <!-- PERSONAL LETTER -->
+
+        <div id="personalLetter">
+
+            <p>
+                I would like to request registration of the domain
+                <span class="highlight" id="previewDomain">
+                    yourdomain.com.np
+                </span>
+                under my personal ownership.
+
+                I have attached all required identification documents
+                for verification and approval.
+            </p>
+
+            <br>
+
+            <p>
+                I kindly request you to process my domain registration
+                at your earliest convenience.
+            </p>
+
+            <br><br>
+
+            <p>
+                <strong>Requested Domain:</strong>
+                <span class="highlight" id="previewDomain2">
+                    yourdomain.com.np
+                </span>
+            </p>
+
+            <br>
+
+            <p>
+                <strong>Name Servers</strong><br>
+                <span id="previewNs1">ns1.examplehost.com</span><br>
+                <span id="previewNs2">ns2.examplehost.com</span>
+            </p>
+
+            <div class="signature">
+
+                Regards,<br><br>
+
+                <strong id="previewName">
+                    Your Name
+                </strong>
+
+                <br>
+
+                <span id="previewAddress">
+                    Your Address
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- ORGANIZATION LETTER -->
+
+        <div id="orgLetter" class="hidden">
+
+            <p>
+                On behalf of
+                <strong id="previewCompany">
+                    Company Name
+                </strong>,
+                I would like to request registration of the domain
+                <span class="highlight" id="previewOrgDomain">
+                    yourdomain.com.np
+                </span>
+                for our organization.
+
+                All necessary company documents have been attached
+                along with this request letter.
+            </p>
+
+            <br>
+
+            <p>
+                We would highly appreciate your approval for the
+                requested domain registration.
+            </p>
+
+            <br><br>
+
+            <p>
+                <strong>Requested Domain:</strong>
+                <span class="highlight" id="previewOrgDomain2">
+                    yourdomain.com.np
+                </span>
+            </p>
+
+            <br>
+
+            <p>
+                <strong>Name Servers</strong><br>
+                <span id="previewOrgNs1">ns1.examplehost.com</span><br>
+                <span id="previewOrgNs2">ns2.examplehost.com</span>
+            </p>
+
+            <div class="signature">
+
+                Sincerely,<br><br>
+
+                <strong id="previewContact">
+                    Contact Person
+                </strong>
+
+                <br>
+
+                <span id="previewCompanyAddress">
+                    Company Address
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- LIBRARIES -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+
+// DATE
+
+const today = new Date();
+
+document.getElementById("currentDate").innerText =
+today.toLocaleDateString('en-GB',{
+    day:'numeric',
+    month:'long',
+    year:'numeric'
+});
+
+
+// MODE SWITCH
+
+const personalBtn = document.getElementById("personalBtn");
+const orgBtn = document.getElementById("orgBtn");
+
+const personalFields = document.getElementById("personalFields");
+const orgFields = document.getElementById("orgFields");
+
+const personalLetter = document.getElementById("personalLetter");
+const orgLetter = document.getElementById("orgLetter");
+
+personalBtn.onclick = () => {
+
+    personalBtn.classList.add("active");
+    orgBtn.classList.remove("active");
+
+    personalFields.classList.remove("hidden");
+    orgFields.classList.add("hidden");
+
+    personalLetter.classList.remove("hidden");
+    orgLetter.classList.add("hidden");
+
+};
+
+orgBtn.onclick = () => {
+
+    orgBtn.classList.add("active");
+    personalBtn.classList.remove("active");
+
+    orgFields.classList.remove("hidden");
+    personalFields.classList.add("hidden");
+
+    orgLetter.classList.remove("hidden");
+    personalLetter.classList.add("hidden");
+
+};
+
+
+// LIVE INPUTS
+
+document.getElementById("domain").addEventListener("input",function(){
+
+    const value = this.value || "yourdomain.com.np";
+
+    document.getElementById("previewDomain").innerText = value;
+    document.getElementById("previewDomain2").innerText = value;
+
+    document.getElementById("previewOrgDomain").innerText = value;
+    document.getElementById("previewOrgDomain2").innerText = value;
+
+});
+
+document.getElementById("fullname").addEventListener("input",function(){
+
+    document.getElementById("previewName").innerText =
+    this.value || "Your Name";
+
+});
+
+document.getElementById("address").addEventListener("input",function(){
+
+    document.getElementById("previewAddress").innerText =
+    this.value || "Your Address";
+
+});
+
+document.getElementById("company").addEventListener("input",function(){
+
+    document.getElementById("previewCompany").innerText =
+    this.value || "Company Name";
+
+});
+
+document.getElementById("contact").addEventListener("input",function(){
+
+    document.getElementById("previewContact").innerText =
+    this.value || "Contact Person";
+
+});
+
+document.getElementById("companyAddress").addEventListener("input",function(){
+
+    document.getElementById("previewCompanyAddress").innerText =
+    this.value || "Company Address";
+
+});
+
+document.getElementById("ns1").addEventListener("input",function(){
+
+    document.getElementById("previewNs1").innerText = this.value;
+    document.getElementById("previewOrgNs1").innerText = this.value;
+
+});
+
+document.getElementById("ns2").addEventListener("input",function(){
+
+    document.getElementById("previewNs2").innerText = this.value;
+    document.getElementById("previewOrgNs2").innerText = this.value;
+
+});
+
+
+// DOWNLOAD
+
+function downloadLetter(){
+
+    const element = document.getElementById("letter");
+
+    const format = document.getElementById("format").value;
+
+    if(format === "pdf"){
+
+        html2pdf().from(element).set({
+
+            margin:0.5,
+            filename:'np-domain-cover-letter.pdf',
+            html2canvas:{scale:2},
+            jsPDF:{
+                unit:'in',
+                format:'a4',
+                orientation:'portrait'
+            }
+
+        }).save();
+
+    }
+
+    else{
+
+        html2canvas(element,{scale:2}).then(canvas=>{
+
+            const link = document.createElement("a");
+
+            if(format === "png"){
+
+                link.download = "np-domain-cover-letter.png";
+                link.href = canvas.toDataURL("image/png");
+
+            }
+
+            else{
+
+                link.download = "np-domain-cover-letter.jpeg";
+                link.href = canvas.toDataURL("image/jpeg",1);
+
+            }
+
+            link.click();
+
+        });
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
